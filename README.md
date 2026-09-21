@@ -173,7 +173,7 @@ Configure the following variables in `.env`:
 ```ini
 # Google Gemini API
 GEMINI_API_KEY=your_gemini_api_key_here
-GEMINI_MODEL=gemini-2.5-flash
+GEMINI_MODEL=gemini-3.6-flash
 
 # Neo4j Graph Database
 NEO4J_URI=bolt://localhost:7687
