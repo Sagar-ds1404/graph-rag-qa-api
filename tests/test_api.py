@@ -46,7 +46,7 @@ def test_upload_invalid_file_extension():
     fake_file = io.BytesIO(b"This is a text file, not a PDF.")
     response = client.post(
         "/documents/upload",
-        files={"files": ("document.txt", fake_file, "text/plain")},
+        files={"file": ("document.txt", fake_file, "text/plain")},
     )
     assert response.status_code == 400
     assert "Only PDF documents (.pdf) are supported" in response.json()["detail"]

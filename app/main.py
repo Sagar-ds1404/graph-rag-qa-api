@@ -100,10 +100,16 @@ def health_check() -> HealthResponse:
     description="Accepts multiple PDF files, extracts text, chunks, embeds in FAISS, and builds graph in Neo4j.",
 )
 async def upload_documents(
-    files: List[UploadFile] = File(..., description="PDF documents to ingest into the Graph RAG system.")
+    file: UploadFile = File(..., description="PDF document to ingest")
 ) -> UploadResponse:
-    """Process and index one or more uploaded PDF documents."""
+
+    files = [file]
+
     if not files:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="No files were provided for upload.",
+        )
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="No files were provided for upload.",

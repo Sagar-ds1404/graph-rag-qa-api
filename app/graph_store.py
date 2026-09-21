@@ -214,6 +214,7 @@ class Neo4jGraphStore:
                 UNWIND $entity_names AS q_name
                 MATCH (e:Entity)
                 WHERE toLower(e.name) CONTAINS toLower(q_name) OR toLower(q_name) CONTAINS toLower(e.name)
+                WITH DISTINCT e
                 OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
                 OPTIONAL MATCH (c:Chunk)-[:MENTIONS]->(e)
                 RETURN e.name AS entity,
